@@ -1,0 +1,30 @@
+CHECK_INTERVAL = 1000
+CHECK_TYPE = DIFF_VALUE
+CHECK_COND = LE
+CHECK_THRESHOLD = 0.001
+PRIORITY_TYPE = NONE
+SCHEDULE_PORTION = 0.2
+# ASYNC/SYNC/SEMI-ASYNC
+#DYNAMIC = TRUE
+ENGINE_TYPE =ASYNC
+MESSAGE_TABLE_UPDATE_THRESHOLD = 1000
+MESSAGE_TABLE_WAITING_INTERVAL = 1000
+INIT_SIZE = 22744080
+MVCC = FALSE
+#SAVE_PATH="/home/wangqg/wangqgresult1"
+THREAD_NUM =1
+#PRINT_RESULT = TRUE
+
+TUNNING=FALSE
+PARAMETER=4
+DUMPLING=3
+
+RULE:
+Adso(int n:0..22744080, double adso).
+Edge(int src:0..22744080, (int dst)).
+Edge_Adso(int src:0..22744080, (int dst, int weight)).
+Edge(s, t) :- l=$read("hdfs://HOSTNAME:9000/experiment/arabic/edge.txt"), (s1,s2)=$split(l, "	"),
+              s=$toInt(s1), t=$toInt(s2).
+Edge_Adso(s,t,w) :- Edge(s, t),w=1.
+Adso(s, d) :- l=$read("hdfs://HOSTNAME:9000/experiment/arabic/node_adsorption.txt"), (s1,s2)=$split(l, "	"), s=$toInt(s1), d=$toDouble(s2).
+Adso(y, $dsum(r1)) :- Adso(x, r), Edge_Adso(x, y, w), r1 = r * w / 2500.

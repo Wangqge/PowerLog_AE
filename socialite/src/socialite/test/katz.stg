@@ -1,0 +1,15 @@
+Init(N,EDGEPATH,NODEPATH,P) ::= <<
+Edge(int n:0..<N>, (int t)) multiset.
+Edge(s,t) :- l=$read("<EDGEPATH>"), (s1,s2)=$split(l, "	"),
+             s=$toInt(s1), t=$toInt(s2).
+Node(int n:0..<N>).
+Node(n) :- Edge(n, _).
+katz(int n:0..<N>,int i:iter, double rank) groupby (2).
+katz(s,0,t) :- l=$read("<NODEPATH>"), (s1,s2)=$split(l, "	"),
+             s=$toInt(s1), t=$toDouble(s2).
+<! ?- Node(n). !>
+>>
+
+Iter(i, N,P)::=<<
+katz(y, <i> + 1, $sum(r1)):- katz(x, <i>, r), Edge(x,y), r1=r*<P>.
+>>

@@ -1,0 +1,16 @@
+Init(N,EDGEPATH,NODEPATH,P) ::= <<
+Edge(int n:0..<N>, (int t)) multiset.
+Edge(s,t) :- l=$read("<EDGEPATH>"), (s1,s2)=$split(l, "	"),
+             s=$toInt(s1), t=$toInt(s2).
+Edge_Adso(int src:0..<N>, (int dst, double weight)).
+Edge_Adso(s,t,w) :- Edge(s, t),w=0.8.
+
+adso(int n:0..<N>,int i:iter, double adso) groupby (2).
+adso(s,0,t) :- l=$read("<NODEPATH>"), (s1,s2)=$split(l, "	"),
+             s=$toInt(s1), t=$toDouble(s2).
+<! ?- Node(n). !>
+>>
+
+Iter(i, N,P)::=<<
+adso(y, <i> + 1, $sum(r1)):- adso(x, <i>, r), Edge_Adso(x,y,w), r1=r*w/<P>.
+>>

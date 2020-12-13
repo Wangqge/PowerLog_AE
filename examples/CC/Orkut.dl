@@ -1,0 +1,22 @@
+CHECK_INTERVAL = 1500
+CHECK_TYPE = DIFF_VALUE
+CHECK_COND = E
+CHECK_THRESHOLD = 0
+PRIORITY_TYPE = NONE
+# ASYNC/SYNC/SEMI-ASYNC/BLOCK_ASYNC
+ENGINE_TYPE = SYNC
+SCHEDULE_PORTION = 0.2
+MESSAGE_TABLE_UPDATE_THRESHOLD = 1000
+MESSAGE_TABLE_WAITING_INTERVAL = 500
+INIT_SIZE=10000000
+THREAD_NUM = 1
+SAVE_PATH="/home/wangqg/wangqgresult1/SSSP"
+RULE:
+Edge(int src:0..10000000,(int dst)).
+CC(int node:0..10000000, int tag).
+Node(int node:0..10000000).
+Edge(s, t) :- l=$read("hdfs://master:9000/clue/edge.txt"), (s1,s2)=$split(l, "	"),
+             s=$toInt(s1), t=$toInt(s2).
+Node(n) :- l=$read("hdfs://master:9000/clue/node.txt"), n=$toInt(l).
+CC(X, X) :- Node(X).
+CC(Y, $dmin(V)) :- CC(X, V), Edge(X, Y), V1 = V.

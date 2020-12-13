@@ -1,0 +1,9 @@
+$ sudo apt install postgresql
+$ pip install pandas
+$ sudo su postgres
+$ psql
+postgres# create user myria with password '123';
+postgres# create database myria owner myria;
+postgres# grant all on database myria to myria;
+postgres# \q
+exit

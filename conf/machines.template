@@ -1,0 +1,9 @@
+MASTER slots=1
+WORKER1 slots=1
+WORKER2 slots=1
+WORKER3 slots=1
+WORKER4 slots=1
+WORKER5 slots=1
+...
+...
+

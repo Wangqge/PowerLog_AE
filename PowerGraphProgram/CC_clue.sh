@@ -1,0 +1,1 @@
+mpiexec -n 16 -hostfile ~/machines ./release/toolkits/graph_analytics/connected_component --graph hdfs://$HOSTNAME:9000/experiment/clue/edge.txt --format snap

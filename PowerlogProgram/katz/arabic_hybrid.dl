@@ -1,0 +1,30 @@
+CHECK_INTERVAL = 1000
+CHECK_TYPE = DIFF_VALUE
+CHECK_COND = LE
+CHECK_THRESHOLD = 0.0001
+PRIORITY_TYPE = LOCAL
+SCHEDULE_PORTION = 0.2
+# ASYNC/SYNC/SEMI-ASYNC
+#DYNAMIC = TRUE
+ENGINE_TYPE =ASYNC
+MESSAGE_TABLE_UPDATE_THRESHOLD = 1000
+MESSAGE_TABLE_WAITING_INTERVAL = 1000
+INIT_SIZE = 22744080
+MVCC = FALSE
+#SAVE_PATH="/home/wangqg/wangqgresult1"
+THREAD_NUM =1
+#PRINT_RESULT = TRUE
+
+TUNNING=TRUE
+PARAMETER=2
+DUMPLING=2
+
+RULE:
+Katz(int n:0..22744080, double rank).
+Edge(int n:0..22744080, (int t)).
+Edge(s, t) :- l=$read("hdfs://HOSTNAME:9000/experiment/arabic/edge.txt"), (s1,s2)=$split(l, "	"),
+             s=$toInt(s1), t=$toInt(s2).
+
+Katz(s, t) :- l=$read("hdfs://HOSTNAME:9000/experiment/arabic/node_katz.txt"), (s1,s2)=$split(l, "	"),
+             s=$toInt(s1), t=$toDouble(s2).
+Katz(y, $dsum(r1)) :- Katz(x, r), Edge(x, y), r1 = 0.0017*r.

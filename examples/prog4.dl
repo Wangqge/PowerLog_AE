@@ -1,0 +1,19 @@
+CHECK_INTERVAL = 1000
+CHECK_TYPE = DELTA
+CHECK_COND = E
+CHECK_THRESHOLD = 0
+PRIORITY_TYPE = NONE
+# ASYNC/SYNC/SEMI-ASYNC
+ENGINE_TYPE = SYNC
+SCHEDULE_PORTION = 0.2
+MESSAGE_TABLE_UPDATE_THRESHOLD = 100
+MESSAGE_TABLE_WAITING_INTERVAL = 100
+THREAD_NUM = 1
+RULE:
+edge(int src:0..685230, (int dst)).
+cpaths(int src:0..685230, (int dst, int count)).
+edge(s, d) :- l=$read("/home/wangqg/Datasets/PageRank/BerkStan/edge.txt"),  (s1,s2)=$split(l, "	"),
+                     s=$toInt(s1), d=$toInt(s2).
+cpaths(x, y, 1) :- edge(x, y).
+cpaths(X, Y, $dcount(C1)) :- cpaths(X, Z, C), edge(Z, Y), C1 = C.
+

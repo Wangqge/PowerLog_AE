@@ -1,0 +1,22 @@
+CHECK_INTERVAL = 1000
+CHECK_TYPE = DELTA
+CHECK_COND = E
+CHECK_THRESHOLD = 0
+PRIORITY_TYPE = NONE
+ENGINE_TYPE=ASYNC
+SCHEDULE_PORTION = 1
+THREAD_NUM = 1
+PRINT_RESULT = TRUE
+DYNAMIC = TRUE
+MVCC=FALSE
+MESSAGE_TABLE_UPDATE_THRESHOLD = 1000
+MESSAGE_TABLE_WAITING_INTERVAL = 100
+RULE:
+Edge(int src:0..3, (int dst)).
+CC(int node:0..3, int tag).
+Node(int node:0..3).
+Edge(s, t) :- l=$read("/home/wangqg/socialite/examples/prog3_edge.txt"), (s1,s2)=$split(l, "	"),
+             s=$toInt(s1), t=$toInt(s2).
+Node(n) :- l=$read("/home/wangqg/socialite/examples/prog3_node.txt"), n=$toInt(l).
+CC(X, X) :- Node(X).
+CC(Y, $dmin(V)) :- CC(X, V), Edge(X, Y), V1 = V.

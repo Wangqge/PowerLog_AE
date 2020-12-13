@@ -1,0 +1,2 @@
+scp -r classes hadoop001:/home/wangqg/socialite
+scp -r classes hadoop002:/home/wangqg/socialite

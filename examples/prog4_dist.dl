@@ -1,0 +1,23 @@
+CHECK_INTERVAL = 1000
+CHECK_TYPE = DELTA
+CHECK_COND = E
+CHECK_THRESHOLD = 0
+PRIORITY_TYPE = LOCAL
+# ASYNC/SYNC/SEMI-ASYNC
+ENGINE_TYPE = ASYNC
+DYNAMIC = FALSE
+THREAD_NUM = 1
+SCHEDULE_PORTION = 1
+MESSAGE_TABLE_UPDATE_THRESHOLD = 100
+MESSAGE_TABLE_WAITING_INTERVAL = 1000
+RULE:
+edge(int src:0..5, (int dst)).
+cpaths(int src:0..9, (int dst, int count)).
+edge(s, d) :- l=$read("/home/wangqg/socialite/examples/prog4_edge.txt"),  (s1,s2)=$split(l, "	"),
+                     s=$toInt(s1), d=$toInt(s2).
+cpaths(y, x, 1) :- edge(x, y).
+cpaths(X, Y, $dcount(C1)) :- cpaths(X, Z, C), edge(Z, Y), C1 = C.
+
+#dist
+#cpaths(int src, (int dst:0..5, int count)).
+#cpaths(X, Y, $dcount(C1)) :- cpaths(Z, X, C), edge(Z, Y), C1 = C.

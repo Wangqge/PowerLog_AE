@@ -1,0 +1,3 @@
+master slots=1
+hadoop001 slots=1
+hadoop002 slots=1

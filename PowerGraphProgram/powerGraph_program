@@ -1,0 +1,6 @@
+mpiexec -n 16 -hostfile ~/machines ./release/toolkits/graph_analytics/sssp --graph hdfs://$HOSTNAME:9000/experiment/wiki/edge_sssp.txt --format snap
+mpiexec -n 16 -hostfile .~/machines ./release/toolkits/graph_analytics/sssp --graph hdfs://$HOSTNAME:9000/experiment/clue/edge_sssp.txt --format snap
+mpiexec -n 16 -hostfile ~/machines ./release/toolkits/graph_analytics/sssp --graph hdfs://$HOSTNAME:9000/experiment/arabic/edge_sssp.txt --format snap
+mpiexec -n 16 -hostfile ~/machines ./release/toolkits/graph_analytics/connected_component --graph hdfs://$HOSTNAME:9000/experiment/wiki/edge.txt --format snap
+mpiexec -n 16 -hostfile ~/machines ./release/toolkits/graph_analytics/connected_component --graph hdfs://$HOSTNAME:9000/experiment/clue/edge.txt --format snap
+mpiexec -n 16 -hostfile ~/machines ./release/toolkits/graph_analytics/connected_component --graph hdfs://$HOSTNAME:9000/experiment/arabic/edge.txt --format snap

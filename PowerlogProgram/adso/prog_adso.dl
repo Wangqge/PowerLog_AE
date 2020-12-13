@@ -1,0 +1,29 @@
+CHECK_INTERVAL = 1000
+CHECK_TYPE = DIFF_VALUE
+CHECK_COND = LE
+CHECK_THRESHOLD = 0.001
+PRIORITY_TYPE = NONE
+# ASYNC/SYNC/SEMI-ASYNC/AUTO
+ENGINE_TYPE = ASYNC
+SCHEDULE_PORTION = 0.2
+DYNAMIC = FALSE
+MESSAGE_TABLE_UPDATE_THRESHOLD = 1000
+MESSAGE_TABLE_WAITING_INTERVAL = 1000
+THREAD_NUM = 1
+#SAVE_PATH = "hdfs://HOSTNAME:9000/test/pr1"
+PRINT_RESULT = FALSE
+
+TUNNING=TRUE
+PARAMETER=4
+DUMPLING=3
+
+
+RULE:
+Adso(int n:0..875712, double adso).
+Edge(int src:0..875712, (int dst)).
+Edge_Adso(int src:0..875712, (int dst, int weight)).
+Edge(s, t) :- l=$read("/home/wangqg/socialite/ae_dataset/experiment/google/edge.txt"), (s1,s2)=$split(l, "	"),
+              s=$toInt(s1), t=$toInt(s2).
+Edge_Adso(s,t,w) :- Edge(s, t),w=1.
+Adso(s, d) :- l=$read("/home/wangqg/socialite/ae_dataset/experiment/google/node_adsorption.txt"), (s1,s2)=$split(l, "	"), s=$toInt(s1), d=$toDouble(s2).
+Adso(y, $dsum(r1)) :- Adso(x, r), Edge_Adso(x, y, w), r1 = r * w / 200.

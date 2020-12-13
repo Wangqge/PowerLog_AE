@@ -1,0 +1,272 @@
+09/27 16:57:31 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+09/27 16:57:31 INFO MasterNode: Master started
+09/27 16:58:14 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+09/27 16:58:14 INFO MasterNode: Master started
+09/27 16:58:14 INFO MasterNode: register 219.216.64.182:50132:50133
+09/27 16:58:14 INFO MasterNode: registry 1 workers
+09/27 16:58:15 INFO MasterNode: register 219.216.64.200:50186:50187
+09/27 16:58:15 INFO MasterNode: registry 2 workers
+09/27 16:58:15 INFO MasterNode: register 219.216.65.202:50115:50116
+09/27 16:58:15 INFO MasterNode: registry 3 workers
+09/27 16:58:15 INFO MasterNode: register 219.216.65.243:50189:50190
+09/27 16:58:15 INFO MasterNode: registry 4 workers
+09/27 16:58:17 INFO DistEngine: WorkerCmd.run() all called:12ms
+09/27 16:58:17 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@26e40719
+09/27 16:58:19 INFO WorkerReqListener: All idle for epoch:0
+09/27 16:58:19 INFO WorkerReqListener: reportIdle() epoch done, epoch-id=0
+09/27 16:58:19 INFO DistEngine: Epoch done! Exec Time:1470ms
+09/27 16:58:19 INFO DistEngine: WorkerCmd.run() all called:3ms
+09/27 16:58:19 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@52e0c6d3
+09/27 16:58:19 INFO WorkerReqListener: All idle for epoch:1
+09/27 16:58:19 INFO WorkerReqListener: reportIdle() epoch done, epoch-id=1
+09/27 16:58:19 INFO DistEngine: Epoch done! Exec Time:130ms
+09/27 16:58:19 INFO DistEngine: WorkerCmd.run() all called:3ms
+09/27 16:58:19 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@1fce1b59
+09/27 16:58:19 INFO WorkerReqListener: All idle for epoch:2
+09/27 16:58:19 INFO WorkerReqListener: reportIdle() epoch done, epoch-id=2
+09/27 16:58:19 INFO DistEngine: Epoch done! Exec Time:95ms
+09/27 16:58:19 INFO QueryListener: Exec time:1696ms for Edge(int n:0..875713, (int t)) multiset.
+Edge(s,t) :- l=$read("/home/gengl/edge.txt"), (s1,s2)=$split(l, "	"),
+             s=$toInt(s1), t=$toInt(s2).
+EdgeCnt(int n:0..875713, int cnt).
+EdgeCnt(s, $inc(1)) :- Edge(s, t).
+Node(int n:0..875713).
+Node(n) :- Edge(n, _). 
+Rank(int n:0..875713, int i:iter, double rank) groupby (2).
+Rank(n, 0, r) :- Node(n), r = 1.0 / 875713.
+
+
+09/27 16:58:19 INFO DistEngine: WorkerCmd.run() all called:1ms
+09/27 16:58:19 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@189f0740
+09/27 16:58:22 INFO WorkerReqListener: All idle for epoch:3
+09/27 16:58:22 INFO WorkerReqListener: reportIdle() epoch done, epoch-id=3
+09/27 16:58:22 INFO DistEngine: Epoch done! Exec Time:3019ms
+09/27 16:58:22 INFO QueryListener: Exec time:3019ms for Rank(n, 0 + 1, $sum(r)) :- Node(n), r=0.2 / 875713 ;
+                      :- Rank(s, 0, r1), EdgeCnt(s, cnt), r=0.8*r1/cnt, Edge(s, n).
+09/27 16:58:23 INFO DistEngine: WorkerCmd.run() all called:1ms
+09/27 16:58:23 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@1c7ea5b5
+09/27 16:58:26 INFO WorkerReqListener: All idle for epoch:4
+09/27 16:58:26 INFO WorkerReqListener: reportIdle() epoch done, epoch-id=4
+09/27 16:58:26 INFO DistEngine: Epoch done! Exec Time:2948ms
+09/27 16:58:26 INFO QueryListener: Exec time:2948ms for Rank(n, 1 + 1, $sum(r)) :- Node(n), r=0.2 / 875713 ;
+                      :- Rank(s, 1, r1), EdgeCnt(s, cnt), r=0.8*r1/cnt, Edge(s, n).
+09/27 16:58:26 INFO DistEngine: WorkerCmd.run() all called:1ms
+09/27 16:58:26 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@14c5414c
+09/27 16:58:29 INFO WorkerReqListener: All idle for epoch:5
+09/27 16:58:29 INFO WorkerReqListener: reportIdle() epoch done, epoch-id=5
+09/27 16:58:29 INFO DistEngine: Epoch done! Exec Time:2951ms
+09/27 16:58:29 INFO QueryListener: Exec time:2951ms for Rank(n, 2 + 1, $sum(r)) :- Node(n), r=0.2 / 875713 ;
+                      :- Rank(s, 2, r1), EdgeCnt(s, cnt), r=0.8*r1/cnt, Edge(s, n).
+09/27 16:58:29 INFO DistEngine: WorkerCmd.run() all called:1ms
+09/27 16:58:29 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@45e97d29
+09/27 16:58:32 INFO WorkerReqListener: All idle for epoch:6
+09/27 16:58:32 INFO WorkerReqListener: reportIdle() epoch done, epoch-id=6
+09/27 16:58:32 INFO DistEngine: Epoch done! Exec Time:2942ms
+09/27 16:58:32 INFO QueryListener: Exec time:2942ms for Rank(n, 3 + 1, $sum(r)) :- Node(n), r=0.2 / 875713 ;
+                      :- Rank(s, 3, r1), EdgeCnt(s, cnt), r=0.8*r1/cnt, Edge(s, n).
+09/27 16:58:32 INFO DistEngine: WorkerCmd.run() all called:0ms
+09/27 16:58:32 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@7d054c01
+09/27 16:58:35 INFO WorkerReqListener: All idle for epoch:7
+09/27 16:58:35 INFO WorkerReqListener: reportIdle() epoch done, epoch-id=7
+09/27 16:58:35 INFO DistEngine: Epoch done! Exec Time:2964ms
+09/27 16:58:35 INFO QueryListener: Exec time:2964ms for Rank(n, 4 + 1, $sum(r)) :- Node(n), r=0.2 / 875713 ;
+                      :- Rank(s, 4, r1), EdgeCnt(s, cnt), r=0.8*r1/cnt, Edge(s, n).
+09/27 16:58:35 INFO DistEngine: WorkerCmd.run() all called:1ms
+09/27 16:58:35 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@76466455
+09/27 16:58:38 INFO WorkerReqListener: All idle for epoch:8
+09/27 16:58:38 INFO WorkerReqListener: reportIdle() epoch done, epoch-id=8
+09/27 16:58:38 INFO DistEngine: Epoch done! Exec Time:3116ms
+09/27 16:58:38 INFO QueryListener: Exec time:3116ms for Rank(n, 5 + 1, $sum(r)) :- Node(n), r=0.2 / 875713 ;
+                      :- Rank(s, 5, r1), EdgeCnt(s, cnt), r=0.8*r1/cnt, Edge(s, n).
+09/27 16:58:38 INFO DistEngine: WorkerCmd.run() all called:0ms
+09/27 16:58:38 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@7b8313fb
+09/27 17:01:42 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+09/27 17:01:42 INFO MasterNode: Master started
+09/27 17:01:42 INFO MasterNode: register 219.216.64.182:50128:50129
+09/27 17:01:42 INFO MasterNode: registry 1 workers
+09/27 17:01:42 INFO MasterNode: register 219.216.64.200:50129:50130
+09/27 17:01:42 INFO MasterNode: registry 2 workers
+09/27 17:01:43 INFO MasterNode: register 219.216.65.202:50157:50158
+09/27 17:01:43 INFO MasterNode: registry 3 workers
+09/27 17:01:43 INFO MasterNode: register 219.216.65.243:50182:50183
+09/27 17:01:43 INFO MasterNode: registry 4 workers
+09/27 17:01:46 INFO DistEngine: WorkerCmd.run() all called:12ms
+09/27 17:01:46 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@26e40719
+09/27 17:01:47 INFO WorkerReqListener: All idle for epoch:0
+09/27 17:01:47 INFO WorkerReqListener: reportIdle() epoch done, epoch-id=0
+09/27 17:01:47 INFO DistEngine: Epoch done! Exec Time:1467ms
+09/27 17:01:47 INFO DistEngine: WorkerCmd.run() all called:2ms
+09/27 17:01:47 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@52e0c6d3
+09/27 17:01:47 INFO WorkerReqListener: All idle for epoch:1
+09/27 17:01:47 INFO WorkerReqListener: reportIdle() epoch done, epoch-id=1
+09/27 17:01:47 INFO DistEngine: Epoch done! Exec Time:116ms
+09/27 17:01:47 INFO DistEngine: WorkerCmd.run() all called:3ms
+09/27 17:01:47 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@1fce1b59
+09/27 17:01:47 INFO WorkerReqListener: All idle for epoch:2
+09/27 17:01:47 INFO WorkerReqListener: reportIdle() epoch done, epoch-id=2
+09/27 17:01:47 INFO DistEngine: Epoch done! Exec Time:95ms
+09/27 17:01:47 INFO QueryListener: Exec time:1680ms for Edge(int n:0..875713, (int t)) multiset.
+Edge(s,t) :- l=$read("/home/gengl/edge.txt"), (s1,s2)=$split(l, "	"),
+             s=$toInt(s1), t=$toInt(s2).
+EdgeCnt(int n:0..875713, int cnt).
+EdgeCnt(s, $inc(1)) :- Edge(s, t).
+Node(int n:0..875713).
+Node(n) :- Edge(n, _). 
+Rank(int n:0..875713, int i:iter, double rank) groupby (2).
+Rank(n, 0, r) :- Node(n), r = 1.0 / 875713.
+
+
+09/27 17:01:48 INFO DistEngine: WorkerCmd.run() all called:2ms
+09/27 17:01:48 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@435cd1ad
+09/27 17:01:51 INFO WorkerReqListener: All idle for epoch:3
+09/27 17:01:51 INFO WorkerReqListener: reportIdle() epoch done, epoch-id=3
+09/27 17:01:51 INFO DistEngine: Epoch done! Exec Time:3032ms
+09/27 17:01:51 INFO QueryListener: Exec time:3032ms for Rank(n, 0 + 1, $sum(r)) :- Node(n), r=0.2 / 875713 ;
+                      :- Rank(s, 0, r1), EdgeCnt(s, cnt), r=0.8*r1/cnt, Edge(s, n).
+09/27 17:01:51 INFO DistEngine: WorkerCmd.run() all called:2ms
+09/27 17:01:51 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@216849a6
+09/27 17:01:54 INFO WorkerReqListener: All idle for epoch:4
+09/27 17:01:54 INFO WorkerReqListener: reportIdle() epoch done, epoch-id=4
+09/27 17:01:54 INFO DistEngine: Epoch done! Exec Time:2990ms
+09/27 17:01:54 INFO QueryListener: Exec time:2990ms for Rank(n, 1 + 1, $sum(r)) :- Node(n), r=0.2 / 875713 ;
+                      :- Rank(s, 1, r1), EdgeCnt(s, cnt), r=0.8*r1/cnt, Edge(s, n).
+09/27 17:01:54 INFO DistEngine: WorkerCmd.run() all called:1ms
+09/27 17:01:54 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@2b0a436
+09/27 17:21:10 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+09/27 17:21:10 INFO MasterNode: Master started
+09/27 17:21:10 INFO MasterNode: register 219.216.64.182:50166:50167
+09/27 17:21:10 INFO MasterNode: registry 1 workers
+09/27 17:21:11 INFO MasterNode: register 219.216.64.200:50189:50190
+09/27 17:21:11 INFO MasterNode: registry 2 workers
+09/27 17:21:11 INFO MasterNode: register 219.216.65.202:50144:50145
+09/27 17:21:11 INFO MasterNode: registry 3 workers
+09/27 17:21:11 INFO MasterNode: register 219.216.65.243:50122:50123
+09/27 17:21:11 INFO MasterNode: registry 4 workers
+09/27 17:21:11 ERROR PortMap: Cannot reserve ports:java.net.BindException: 地址已在使用 (Bind failed)
+09/27 17:21:13 INFO DistEngine: WorkerCmd.run() all called:11ms
+09/27 17:21:13 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@26e40719
+09/27 17:21:15 INFO WorkerReqListener: All idle for epoch:0
+09/27 17:21:15 INFO WorkerReqListener: reportIdle() epoch done, epoch-id=0
+09/27 17:21:15 INFO DistEngine: Epoch done! Exec Time:1446ms
+09/27 17:21:15 INFO DistEngine: WorkerCmd.run() all called:2ms
+09/27 17:21:15 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@52e0c6d3
+09/27 17:21:15 INFO WorkerReqListener: All idle for epoch:1
+09/27 17:21:15 INFO WorkerReqListener: reportIdle() epoch done, epoch-id=1
+09/27 17:21:15 INFO DistEngine: Epoch done! Exec Time:129ms
+09/27 17:21:15 INFO DistEngine: WorkerCmd.run() all called:3ms
+09/27 17:21:15 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@1fce1b59
+09/27 17:21:15 INFO WorkerReqListener: All idle for epoch:2
+09/27 17:21:15 INFO WorkerReqListener: reportIdle() epoch done, epoch-id=2
+09/27 17:21:15 INFO DistEngine: Epoch done! Exec Time:95ms
+09/27 17:21:15 INFO QueryListener: Exec time:1671ms for Edge(int n:0..875713, (int t)) multiset.
+Edge(s,t) :- l=$read("/home/gengl/edge.txt"), (s1,s2)=$split(l, "	"),
+             s=$toInt(s1), t=$toInt(s2).
+EdgeCnt(int n:0..875713, int cnt).
+EdgeCnt(s, $inc(1)) :- Edge(s, t).
+Node(int n:0..875713).
+Node(n) :- Edge(n, _). 
+Rank(int n:0..875713, int i:iter, double rank) groupby (2).
+Rank(n, 0, r) :- Node(n), r = 1.0 / 875713.
+
+
+09/27 17:22:28 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+09/27 17:22:28 INFO MasterNode: Master started
+09/27 17:22:28 INFO MasterNode: register 219.216.65.243:50153:50154
+09/27 17:22:28 INFO MasterNode: registry 1 workers
+09/27 17:22:28 INFO MasterNode: register 219.216.64.182:50126:50127
+09/27 17:22:28 INFO MasterNode: registry 2 workers
+09/27 17:22:28 INFO MasterNode: register 219.216.64.200:50152:50153
+09/27 17:22:28 INFO MasterNode: registry 3 workers
+09/27 17:22:28 INFO MasterNode: register 219.216.65.202:50149:50150
+09/27 17:22:28 INFO MasterNode: registry 4 workers
+09/27 17:22:30 INFO DistEngine: WorkerCmd.run() all called:13ms
+09/27 17:22:30 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@584d9cea
+09/27 17:22:32 INFO WorkerReqListener: All idle for epoch:0
+09/27 17:22:32 INFO WorkerReqListener: reportIdle() epoch done, epoch-id=0
+09/27 17:22:32 INFO DistEngine: Epoch done! Exec Time:1488ms
+09/27 17:22:32 INFO DistEngine: WorkerCmd.run() all called:4ms
+09/27 17:22:32 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@25d6b6c6
+09/27 17:22:32 INFO WorkerReqListener: All idle for epoch:1
+09/27 17:22:32 INFO WorkerReqListener: reportIdle() epoch done, epoch-id=1
+09/27 17:22:32 INFO DistEngine: Epoch done! Exec Time:106ms
+09/27 17:22:32 INFO DistEngine: WorkerCmd.run() all called:2ms
+09/27 17:22:32 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@f58e095
+09/27 17:22:32 INFO WorkerReqListener: All idle for epoch:2
+09/27 17:22:32 INFO WorkerReqListener: reportIdle() epoch done, epoch-id=2
+09/27 17:22:32 INFO DistEngine: Epoch done! Exec Time:96ms
+09/27 17:22:32 INFO QueryListener: Exec time:1690ms for Edge(int n:0..875713, (int t)) multiset.
+Edge(s,t) :- l=$read("/home/gengl/edge.txt"), (s1,s2)=$split(l, "	"),
+             s=$toInt(s1), t=$toInt(s2).
+EdgeCnt(int n:0..875713, int cnt).
+EdgeCnt(s, $inc(1)) :- Edge(s, t).
+Node(int n:0..875713).
+Node(n) :- Edge(n, _). 
+Rank(int n:0..875713, int i:iter, double rank) groupby (2).
+Rank(n, 0, r) :- Node(n), r = 1.0 / 875713.
+
+
+09/27 17:22:33 INFO DistEngine: WorkerCmd.run() all called:1ms
+09/27 17:22:33 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@3c4e57e3
+09/27 17:22:36 INFO WorkerReqListener: All idle for epoch:3
+09/27 17:22:36 INFO WorkerReqListener: reportIdle() epoch done, epoch-id=3
+09/27 17:22:36 INFO DistEngine: Epoch done! Exec Time:3280ms
+09/27 17:22:36 INFO QueryListener: Exec time:3280ms for Rank(n, 0 + 1, $sum(r)) :- Node(n), r=0.2 / 875713 ;
+                      :- Rank(s, 0, r1), EdgeCnt(s, cnt), r=0.8*r1/cnt, Edge(s, n).
+09/27 17:22:36 INFO DistEngine: WorkerCmd.run() all called:1ms
+09/27 17:22:36 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@70a062c3
+09/27 17:22:39 INFO WorkerReqListener: All idle for epoch:4
+09/27 17:22:39 INFO WorkerReqListener: reportIdle() epoch done, epoch-id=4
+09/27 17:22:39 INFO DistEngine: Epoch done! Exec Time:3189ms
+09/27 17:22:39 INFO QueryListener: Exec time:3189ms for Rank(n, 1 + 1, $sum(r)) :- Node(n), r=0.2 / 875713 ;
+                      :- Rank(s, 1, r1), EdgeCnt(s, cnt), r=0.8*r1/cnt, Edge(s, n).
+09/27 17:22:39 INFO DistEngine: WorkerCmd.run() all called:1ms
+09/27 17:22:39 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@37820817
+09/27 17:22:43 INFO WorkerReqListener: All idle for epoch:5
+09/27 17:22:43 INFO WorkerReqListener: reportIdle() epoch done, epoch-id=5
+09/27 17:22:43 INFO DistEngine: Epoch done! Exec Time:3178ms
+09/27 17:22:43 INFO QueryListener: Exec time:3179ms for Rank(n, 2 + 1, $sum(r)) :- Node(n), r=0.2 / 875713 ;
+                      :- Rank(s, 2, r1), EdgeCnt(s, cnt), r=0.8*r1/cnt, Edge(s, n).
+09/27 17:22:43 INFO DistEngine: WorkerCmd.run() all called:2ms
+09/27 17:22:43 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@7a5c941d
+09/27 17:22:46 INFO WorkerReqListener: All idle for epoch:6
+09/27 17:22:46 INFO WorkerReqListener: reportIdle() epoch done, epoch-id=6
+09/27 17:22:46 INFO DistEngine: Epoch done! Exec Time:3139ms
+09/27 17:22:46 INFO QueryListener: Exec time:3139ms for Rank(n, 3 + 1, $sum(r)) :- Node(n), r=0.2 / 875713 ;
+                      :- Rank(s, 3, r1), EdgeCnt(s, cnt), r=0.8*r1/cnt, Edge(s, n).
+09/27 17:22:46 INFO DistEngine: WorkerCmd.run() all called:1ms
+09/27 17:22:46 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@490b2bb2
+09/27 17:22:49 INFO WorkerReqListener: All idle for epoch:7
+09/27 17:22:49 INFO WorkerReqListener: reportIdle() epoch done, epoch-id=7
+09/27 17:22:49 INFO DistEngine: Epoch done! Exec Time:3058ms
+09/27 17:22:49 INFO QueryListener: Exec time:3058ms for Rank(n, 4 + 1, $sum(r)) :- Node(n), r=0.2 / 875713 ;
+                      :- Rank(s, 4, r1), EdgeCnt(s, cnt), r=0.8*r1/cnt, Edge(s, n).
+09/27 17:22:49 INFO DistEngine: WorkerCmd.run() all called:0ms
+09/27 17:22:49 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@365a79a
+09/27 17:22:52 INFO WorkerReqListener: All idle for epoch:8
+09/27 17:22:52 INFO WorkerReqListener: reportIdle() epoch done, epoch-id=8
+09/27 17:22:52 INFO DistEngine: Epoch done! Exec Time:3093ms
+09/27 17:22:52 INFO QueryListener: Exec time:3093ms for Rank(n, 5 + 1, $sum(r)) :- Node(n), r=0.2 / 875713 ;
+                      :- Rank(s, 5, r1), EdgeCnt(s, cnt), r=0.8*r1/cnt, Edge(s, n).
+09/27 17:22:52 INFO DistEngine: WorkerCmd.run() all called:1ms
+09/27 17:22:52 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@3255dcc
+09/27 17:22:55 INFO WorkerReqListener: All idle for epoch:9
+09/27 17:22:55 INFO WorkerReqListener: reportIdle() epoch done, epoch-id=9
+09/27 17:22:55 INFO DistEngine: Epoch done! Exec Time:3108ms
+09/27 17:22:55 INFO QueryListener: Exec time:3108ms for Rank(n, 6 + 1, $sum(r)) :- Node(n), r=0.2 / 875713 ;
+                      :- Rank(s, 6, r1), EdgeCnt(s, cnt), r=0.8*r1/cnt, Edge(s, n).
+09/27 17:22:55 INFO DistEngine: WorkerCmd.run() all called:1ms
+09/27 17:22:55 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@326dd9c4
+09/27 17:22:58 INFO WorkerReqListener: All idle for epoch:10
+09/27 17:22:58 INFO WorkerReqListener: reportIdle() epoch done, epoch-id=10
+09/27 17:22:58 INFO DistEngine: Epoch done! Exec Time:3165ms
+09/27 17:22:58 INFO QueryListener: Exec time:3165ms for Rank(n, 7 + 1, $sum(r)) :- Node(n), r=0.2 / 875713 ;
+                      :- Rank(s, 7, r1), EdgeCnt(s, cnt), r=0.8*r1/cnt, Edge(s, n).
+09/27 17:22:58 INFO DistEngine: WorkerCmd.run() all called:0ms
+09/27 17:22:58 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@26326814
+09/27 17:23:01 INFO WorkerReqListener: All idle for epoch:11
+09/27 17:23:01 INFO WorkerReqListener: reportIdle() epoch done, epoch-id=11
+09/27 17:23:01 INFO DistEngine: Epoch done! Exec Time:3174ms
+09/27 17:23:01 INFO QueryListener: Exec time:3174ms for Rank(n, 8 + 1, $sum(r)) :- Node(n), r=0.2 / 875713 ;
+                      :- Rank(s, 8, r1), EdgeCnt(s, cnt), r=0.8*r1/cnt, Edge(s, n).
+09/27 17:23:01 INFO DistEngine: WorkerCmd.run() all called:0ms
+09/27 17:23:01 INFO SRuntimeMaster: waitForIdle: stat=socialite.dist.IdleStat@5b7f22d4

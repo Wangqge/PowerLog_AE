@@ -1,0 +1,125 @@
+#TESTED
+E = load("hdfs://master:9000/Datasets/CC/BerkStan/edge.txt", csv(schema(src:int, dst:int), delimiter="\t"));
+
+V = [from E emit src as x] + [from E emit dst as x];
+V = select distinct x from V;
+do
+  CC = [nid, MIN(cid) as cid] <-
+    [from V emit V.x as nid, V.x as cid] +
+    [from E, CC where E.src = CC.nid emit E.dst as nid, CC.cid];
+until convergence pull_idb;
+store(CC, CC_output);
+
+#TESTED
+E = load("hdfs://master:9000/Datasets/SSSP/BerkStan/edge.txt", csv(schema(src:int, dst:int, weight:int), delimiter="\t"));
+INIT_SSSP = load("hdfs://master:9000/Datasets/SSSP/BerkStan/node.txt", csv(schema(src:int, dist:int), delimiter="\t"));
+do
+  SSSP = [nid, MIN(dist) as dist] <-
+    [from INIT_SSSP emit INIT_SSSP.src as nid, INIT_SSSP.dist as dist] +
+    [from E, SSSP where E.src = SSSP.nid emit E.dst as nid, SSSP.dist + E.weight];
+until convergence pull_idb;
+store(SSSP, SSSP_output);
+
+
+#TESTED
+-- Simplified PageRank; assumes that all nodes have out degree > 0
+
+alpha = [.8];
+epsilon = [.0001];
+
+Edge = load("hdfs://master:9000/examples/prog2_edge.txt", csv(schema(src:int, dst:int), delimiter="\t"));
+Vertex = [from Edge emit src as x] + [from Edge emit dst as x];
+Vertex = select distinct x as id from Vertex;
+
+N = [FROM Vertex EMIT COUNT(id) AS val];
+min_rank = [(1 - *alpha) / *N];
+
+OutDegree = [FROM Edge EMIT Edge.src AS id, COUNT(Edge.dst) AS cnt];
+PageRank = [FROM Vertex EMIT Vertex.id AS id, 1.0 / *N AS rank];
+
+DO
+    -- Calculate each node's outbound page rank contribution
+    PrOut = [FROM PageRank, OutDegree WHERE PageRank.id == OutDegree.id
+             EMIT PageRank.id AS id, PageRank.rank / OutDegree.cnt AS out_rank];
+
+    -- Compute the inbound summands for each node
+    Summand = [FROM Vertex, Edge, PrOut
+                WHERE Edge.dst == Vertex.id AND Edge.src == PrOut.id
+                EMIT Vertex.id AS id, PrOut.out_rank AS summand];
+
+    -- Sum up the summands; adjust by alpha
+    NewPageRank = [FROM Summand EMIT id AS id,
+                   *min_rank + *alpha * SUM(Summand.summand) AS rank];
+    Delta = [FROM NewPageRank, PageRank WHERE NewPageRank.id == PageRank.id
+             EMIT ABS(NewPageRank.rank - PageRank.rank) AS val];
+    Continue = [FROM Delta EMIT MAX(Delta.val) > *epsilon];
+    PageRank = NewPageRank;
+WHILE Continue;
+
+STORE(PageRank, OUTPUT);
+
+
+# LCA
+
+Cite = load("hdfs://master:9000/examples/prog2_edge.txt", csv(schema(a:int, b:int), delimiter="\t"));
+Ancestor = [FROM Cite WHERE Cite.b < 5 EMIT Cite.a as a, ]
+do
+Ancestor = [a,b,MIN(dis) as dis] <- [from Cite emit a, b, 1 as dis] +
+        [from Ancestor, Cite
+         where Ancestor.b = Cite.a
+         emit Ancestor.a, Cite.b, Ancestor.dis+1];
+
+until convergence sync;
+store(LCA, LCA);
+
+#LCA = [pid1,pid2,LEXMIN(dis,anc)] <-
+#        [from Ancestor as A1, Ancestor as A2, Paper
+#         where A1.b = A2.b and A1.b = Paper.d and A1.a < A2.a
+#         emit A1.a as pid1, A2.a as pid2,
+#         greater(A1.dis, A2.dis) as dis,
+#         A1.b as anc];
+
+
+
+
+
+
+
+
+
+
+
+alpha = [.8];
+COUNTER = [0];
+MAX_ITER = [5];
+
+Edge = load("hdfs://master:9000/examples/prog2_edge.txt", csv(schema(src:int, dst:int), delimiter="\t"));
+Vertex = [from Edge emit src as x] + [from Edge emit dst as x];
+Vertex = select distinct x as id from Vertex;
+
+N = [FROM Vertex EMIT COUNT(id) AS val];
+min_rank = [(1 - *alpha) / *N];
+
+OutDegree = [FROM Edge EMIT Edge.src AS id, COUNT(Edge.dst) AS cnt];
+PageRank = [FROM Vertex EMIT Vertex.id AS id, 1.0 / *N AS rank];
+--sink(OutDegree);
+--sink(PageRank);
+DO
+    -- Calculate each node's outbound page rank contribution
+    PrOut = [FROM PageRank, OutDegree WHERE PageRank.id == OutDegree.id
+             EMIT PageRank.id AS id, PageRank.rank / OutDegree.cnt AS out_rank];
+
+    -- Compute the inbound summands for each node
+    Summand = [FROM Vertex, Edge, PrOut
+                WHERE Edge.dst == Vertex.id AND Edge.src == PrOut.id
+                EMIT Vertex.id AS id, PrOut.out_rank AS summand];
+
+    -- Sum up the summands; adjust by alpha
+    NewPageRank = [FROM Summand EMIT id AS id,
+                   *min_rank + *alpha * SUM(Summand.summand) AS rank];
+    Continue = [*COUNTER < *MAX_ITER];
+    COUNTER = [*COUNTER + 1];
+    PageRank = NewPageRank;
+WHILE Continue;
+STORE(PageRank, OUTPUT);
+--sink(PageRank);

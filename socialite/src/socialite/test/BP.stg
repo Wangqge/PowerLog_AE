@@ -1,0 +1,19 @@
+Init(N,EDGEPATH, P) ::= <<
+Edge(int n:0..<N>, (int t)) multiset.
+Edge(s,t) :- l=$read("<EDGEPATH>"), (s1,s2)=$split(l, "	"),
+             s=$toInt(s1), t=$toInt(s2).
+H(int src:0..<N>, double phi).
+Edge_bp(int src:0..12150976, (int dst, double weight)).
+Node(int n:0..<N>).
+Node(n) :- Edge(n, _).
+BeliefP(int n:0..<N>, int i:iter, double b) groupby (2).
+BeliefP(n, 0, b) :- Node(n), b = 0.8.
+H(n, phi):- Node(n), phi=0.8.
+Edge_bp(s,t,w):-Edge(s,t),w=1.0.
+
+<! ?- Node(n). !>
+>>
+
+Iter(i, N,P)::=<<
+BeliefP(y, <i> + 1, $sum(b1)):- BeliefP(x, <i>, b), Edge_bp(x,y, w), H(x,h), b1=w*b*h/<P>.
+>>

@@ -1,0 +1,30 @@
+CHECK_INTERVAL = 1000
+CHECK_TYPE = DIFF_VALUE
+CHECK_COND = LE
+CHECK_THRESHOLD = 0.01
+PRIORITY_TYPE = NONE
+# ASYNC/SYNC/SEMI-ASYNC/AUTO
+ENGINE_TYPE = SYNC
+SCHEDULE_PORTION = 0.2
+DYNAMIC = FALSE
+MESSAGE_TABLE_UPDATE_THRESHOLD = 1000
+MESSAGE_TABLE_WAITING_INTERVAL = 1000
+THREAD_NUM = 1
+#SAVE_PATH = "hdfs://HOSTNAME:9000/test/pr1"
+#PRINT_RESULT = TRUE
+RULE:
+BeliefP(int n:0..875712, double b).
+Edge(int src:0..875712, (int dst)).
+Edge_bp(int src:0..875712, (int dst, int weight)).
+H(int src:0..875712, double phi).
+
+BeliefP(x, y) :- l=$read("hdfs://master:9000/experiment/google/node_bp.txt"), (s1,s2)=$split(l, "	"),
+             x=$toInt(s1), y=$toDouble(s2).
+
+Edge(s, t) :- l=$read("hdfs://master:9000/experiment/google/edge.txt"), (s1,s2)=$split(l, "	"),
+             s=$toInt(s1), t=$toInt(s2).
+Edge_bp(s,t,w):-Edge(s,t),w=1.
+H(s, w) :- l=$read("hdfs://master:9000/experiment/google/node_bp.txt"), (s1,s2)=$split(l, "	"),
+             s=$toInt(s1), w=$toDouble(s2).
+
+BeliefP(y,$dsum(b1)) :- BeliefP(x,b),Edge_bp(x, y, w),H(x, h),b1=w*b*h/200.

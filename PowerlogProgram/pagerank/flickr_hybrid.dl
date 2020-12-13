@@ -1,0 +1,36 @@
+CHECK_INTERVAL = 1000
+CHECK_TYPE = VALUE
+CHECK_COND = GE
+CHECK_THRESHOLD =  0.999
+PRIORITY_TYPE = LOCAL
+SCHEDULE_PORTION = 0.2
+# ASYNC/SYNC/SEMI-ASYNC
+#DYNAMIC = TRUE
+ENGINE_TYPE =ASYNC
+MESSAGE_TABLE_UPDATE_THRESHOLD = 1000
+MESSAGE_TABLE_WAITING_INTERVAL = 1000
+INIT_SIZE = 2302925
+MVCC = FALSE
+#SAVE_PATH="/home/wangqg/wangqgresult1"
+THREAD_NUM =1
+#PRINT_RESULT = TRUE
+
+TUNNING=TRUE
+PARAMETER=2
+DUMPLING=1.2
+
+RULE:
+Node(int n:0..2302925).
+Rank(int n:0..2302925, double rank).
+Edge(int n:0..2302925, (int t)).
+EdgeCnt(int n:0..2302925, int cnt).
+
+Edge(s, t) :- l=$read("hdfs://HOSTNAME:9000/experiment/flickr/edge.txt"), (s1,s2)=$split(l, "	"),
+             s=$toInt(s1), t=$toInt(s2).
+
+
+Node(n) :- l=$read("hdfs://HOSTNAME:9000/experiment/flickr/node.txt"), n=$toInt(l).
+
+EdgeCnt(s, $inc(1)) :- Edge(s, t).
+Rank(n, r) :- Node(n), r = 0.2/22744080.
+Rank(y, $dsum(r1)) :- Rank(x, r), Edge(x, y), EdgeCnt(x, __d), r1 = 0.8 * r / __d.
