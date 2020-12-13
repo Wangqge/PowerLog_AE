@@ -15,7 +15,7 @@ for line in file1:
     maxdata=max(maxdata,froms[0])
     maxdata=max(maxdata,froms[1])
     froms[2]=random.randint(1, 10) 	
-    file2.write(str(froms[0])+" "+str(froms[1])+"   "+str(froms[2])+"\n")
+    file2.write(str(froms[0])+"\t"+str(froms[1])+"\t"+str(froms[2])+"\n")
 	#	file3.write(str(froms[0])+"\t"+str(froms[1])+"\t"+str(random.randint(1,9))+"\n")
 for j in range(0,maxdata):
 	file3.write(str(j)+"\n")
