@@ -33,7 +33,7 @@ if sys.argv[1] == 'start':
 
     print("Works started!!!!!!")
         
-    prog_args = 'dist %d %s%s%s  %s%s%s %d'%(22744080, 'hdfs://',MASTER_HOSTNAME,':9000/experiment/arabic/node.txt','hdfs://',MASTER_HOSTNAME,':9000/experiment/arabic/edge.txt',10)
+    prog_args = 'dist %d %s%s%s  %s%s%s %d'%(22744080, 'hdfs://',MASTER_HOSTNAME,':9000/experiment/arabic/node.txt','hdfs://',MASTER_HOSTNAME,':9000/experiment/arabic/edge.txt',53)
     #prog_args = 'dist %d %s %d'%(int(sys.argv[2]),sys.argv[3],int(sys.argv[4]))
     command_line = '''
     %s/bin/java -Xmx26G -ea \\

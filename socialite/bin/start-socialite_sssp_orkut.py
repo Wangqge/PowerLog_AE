@@ -33,7 +33,7 @@ if sys.argv[1] == 'start':
 
     print("Works started!!!!!!")
 
-    prog_args = 'dist %d %s%s%s %d'%(3072441,'hdfs://',MASTER_HOSTNAME,':9000/experiment/orkut/edge_sssp.txt',20)
+    prog_args = 'dist %d %s%s%s %d'%(3072441,'hdfs://',MASTER_HOSTNAME,':9000/experiment/orkut/edge_sssp.txt',15)
     #prog_args = 'dist %d %s %d'%(int(sys.argv[2]),sys.argv[3],int(sys.argv[4]))
     command_line = '''
     %s/bin/java -Xmx26G -ea \\
