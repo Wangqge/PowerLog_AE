@@ -7,8 +7,7 @@
 # variables for configure
 MASTER_NAME=$HOSTNAME
 HADOOP_PORT_NUMBER=9000
-
-
+DOWNLOAD_HOST=47.105.182.185
 
 ###################################################
 
@@ -33,13 +32,13 @@ source ${bashfile}
 
 
 #install java
+wget $DOWNLOAD_HOST/jdk-8u161-linux-x64.tar.gz
 tar xvzf jdk-8u161-linux-x64.tar.gz
 sudo apt update
-sudo apt install scala
-sudo apt install git
-sudo apt install maven
-sudo apt install ant
-
+sudo apt install scala y
+sudo apt install git y
+sudo apt install maven y
+sudo apt install ant y
 
 # download openmpi
 if true; then
