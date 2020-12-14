@@ -1,4 +1,4 @@
-DOWNLOAD_HOST=47.105.182.185
+DOWNLOAD_HOST=http://hercules.cse.ohio-state.edu
 wget $DOWNLOAD_HOST/live/edge.txt.zip
 mv ./edge.txt.zip ./ae_dataset/experiment/live/
 wget $DOWNLOAD_HOST/flickr/edge.txt.zip

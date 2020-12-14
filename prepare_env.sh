@@ -7,7 +7,7 @@
 # variables for configure
 MASTER_NAME=$HOSTNAME
 HADOOP_PORT_NUMBER=9000
-DOWNLOAD_HOST=47.105.182.185
+DOWNLOAD_HOST=http://hercules.cse.ohio-state.edu
 
 ###################################################
 
