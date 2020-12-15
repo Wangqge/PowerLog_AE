@@ -32,24 +32,13 @@ source ${bashfile}
 
 
 #install java
-wget $DOWNLOAD_HOST/jdk-8u161-linux-x64.tar.gz
 tar xvzf jdk-8u161-linux-x64.tar.gz
-sudo apt update
-sudo apt install scala y
-sudo apt install git y
-sudo apt install maven y
-sudo apt install ant y
 
 # download openmpi
-if true; then
-wget https://download.open-mpi.org/release/open-mpi/v3.0/openmpi-3.0.0.tar.gz
-fi
 ./install_mpi.sh
 
 #install hadoop
-if true; then
-wget archive.apache.org/dist/hadoop/common/hadoop-2.6.5/hadoop-2.6.5.tar.gz
-fi
+
 tar xvzf hadoop-2.6.5.tar.gz
 
 #compiling PowerLog 
@@ -62,21 +51,14 @@ ant compile
 cd ..
 
 #downloading Bigdatalog
-if true; then
-git clone https://github.com/ashkapsky/BigDatalog
-fi
+
 ./prepare_BigDatalog.sh
 
 #downloading Myria
-if ture; then
-git clone https://github.com/uwescience/myria
-fi
+
 ./prepare_Myria.sh
 
 #downloading PowerGraph
-if true; then
-git clone https://github.com/jegonzal/PowerGraph
-fi
 
 
 
