@@ -35,7 +35,7 @@ JAVA_HOME=${cur_dir}/jdk1.8.0_161
 
 #myria_env
 MY_MYRIA_HOME=${cur_dir}/hadoop-2.6.5
-cp -r ./prepare_conigure_file/myria_conf/* ${MY_MYRIA_HOME}/myriadeploy/
+cp -r ./prepare_configure_file/myria_conf/* ${MY_MYRIA_HOME}/myriadeploy/
 
 #HADOOP
 MY_HADOOP_HOME=${cur_dir}/hadoop-2.6.5
@@ -43,10 +43,10 @@ hadoop_worker_file=${MY_HADOOP_HOME}/etc/hadoop/slaves_1
 
 #if false;then
 #configure
-cd ./prepare_conigure_file/hadoop_conf/etc/hadoop
+cd ./prepare_configure_file/hadoop_conf/etc/hadoop
 ./prepare_hadoop_conf.sh ${MASTER_NAME} ${HADOOP_PORT_NUMBER} ${MY_HADOOP_HOME} ${JAVA_HOME}
 cd ../../../..
-cp -r ./prepare_conigure_file/hadoop_conf/etc/hadoop/* ${MY_HADOOP_HOME}/etc/hadoop/
+cp -r ./prepare_configure_file/hadoop_conf/etc/hadoop/* ${MY_HADOOP_HOME}/etc/hadoop/
 
 #slaves
 for((i=0;i<${NUMBER_OF_WORKERS};i++));
@@ -62,10 +62,10 @@ mv ./hadoop-2.6.5/etc/hadoop/slaves_1 ./hadoop-2.6.5/etc/hadoop/slaves
 MY_BDL_HOME=${cur_dir}/BigDatalog
 bdl_worker_file=${MY_BDL_HOME}/conf/slaves_1
 
-cd ./prepare_conigure_file/spark_conf/
+cd ./prepare_configure_file/spark_conf/
 ./prepare_spark_conf.sh ${MASTER_NAME} ${MY_HADOOP_HOME} ${JAVA_HOME}
 cd ../../
-cp -r ./prepare_conigure_file/spark_conf/* ${MY_BDL_HOME}/conf
+cp -r ./prepare_configure_file/spark_conf/* ${MY_BDL_HOME}/conf
 
 #slaves
 for((i=0;i<${NUMBER_OF_WORKERS};i++));
