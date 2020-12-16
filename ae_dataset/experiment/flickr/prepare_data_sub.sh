@@ -1,5 +1,5 @@
 echo "######################################"
-echo "          ARABIC-DATASET              "
+echo "          FLICKR-DATASET              "
 echo "######################################"
 echo "downloading"
 

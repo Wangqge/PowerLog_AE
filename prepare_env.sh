@@ -28,6 +28,7 @@ echo export MPI_HOME=${cur_dir1}/openmpi >>${bashfile}
 echo 'export PATH=$JAVA_HOME/bin:$MPI_HOME/bin:$PATH' >>${bashfile}
 echo 'export CLASSPATH=.$JAVA_HOME/lib:$JRE_HOME/lib'>>${bashfile}
 echo 'export LD_LIBRARY_PATH=$MPI_HOME/lib:/usr/local/lib:/usr/lib'>>${bashfile}
+echo 'export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8'>>${bathfile}
 source ${bashfile}
 
 

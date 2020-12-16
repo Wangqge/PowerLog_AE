@@ -1,5 +1,5 @@
 echo "######################################"
-echo "          ARABIC-DATASET              "
+echo "          LiveJournal-DATASET              "
 echo "######################################"
 echo "downloading"
 

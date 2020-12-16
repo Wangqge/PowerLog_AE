@@ -1,5 +1,5 @@
 echo "######################################"
-echo "          ARABIC-DATASET              "
+echo "          ORKUT-DATASET              "
 echo "######################################"
 echo "downloading"
 
