@@ -9,7 +9,7 @@ SCHEDULE_PORTION = 0.2
 ENGINE_TYPE =ASYNC
 MESSAGE_TABLE_UPDATE_THRESHOLD = 1000
 MESSAGE_TABLE_WAITING_INTERVAL = 1000
-INIT_SIZE = 3072441
+INIT_SIZE = 3072625
 MVCC = FALSE
 #SAVE_PATH="/home/wangqg/wangqgresult1"
 THREAD_NUM =1
@@ -20,8 +20,8 @@ PARAMETER=3
 DUMPLING=1.2
 
 RULE:
-edge(int src:0..3072441, (int dst, int weight)).
-sssp(int node:0..3072441, int dist).
+edge(int src:0..3072625, (int dst, int weight)).
+sssp(int node:0..3072625, int dist).
 
 edge(s, t, w) :- l=$read("hdfs://HOSTNAME:9000/experiment/orkut/edge_sssp.txt"), (s1,s2,s3)=$split(l, "	"),
              s=$toInt(s1), t=$toInt(s2), w=$toInt(s3).

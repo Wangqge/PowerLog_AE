@@ -32,5 +32,5 @@ Edge(s, t) :- l=$read("hdfs://HOSTNAME:9000/experiment/flickr/edge.txt"), (s1,s2
 Node(n) :- l=$read("hdfs://HOSTNAME:9000/experiment/flickr/node.txt"), n=$toInt(l).
 
 EdgeCnt(s, $inc(1)) :- Edge(s, t).
-Rank(n, r) :- Node(n), r = 0.2/22744080.
+Rank(n, r) :- Node(n), r = 0.2/2302925.
 Rank(y, $dsum(r1)) :- Rank(x, r), Edge(x, y), EdgeCnt(x, __d), r1 = 0.8 * r / __d.
