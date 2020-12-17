@@ -6,6 +6,6 @@ echo ${cur_dir}
 #wget https://download.open-mpi.org/release/open-mpi/v3.0/openmpi-3.0.0.tar.gz
 tar xvzf ./openmpi-3.0.0.tar.gz
 cd openmpi-3.0.0
-./configure --prefix ${cur_dir}/openmpi --enable-mpi-java
+./configure --prefix ${cur_dir}/openmpi --enable-mpi-java --enable-orterun-prefix-by-default
 make -j4
 sudo make install

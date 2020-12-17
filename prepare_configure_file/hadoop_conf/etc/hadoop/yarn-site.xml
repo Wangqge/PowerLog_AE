@@ -66,16 +66,16 @@
     <description>CLASSPATH for YARN applications. A comma-separated list of CLASSPATH entries</description>
     <name>yarn.application.classpath</name>
     <value>
-      /home/wangqg/hadoop/etc/hadoop,
-      /home/wangqg/hadoop/share/hadoop/common/*,
-      /home/wangqg/hadoop/share/hadoop/common/lib/*,
-      /home/wangqg/hadoop/share/hadoop/hdfs/*,
-      /home/wangqg/hadoop/share/hadoop/hdfs/lib/*,
-      /home/wangqg/hadoop/share/hadoop/mapreduce/*,
-      /home/wangqg/hadoop/share/hadoop/mapreduce/lib/*,
-      /home/wangqg/hadoop/share/hadoop/yarn/*,
-      /home/wangqg/hadoop/share/hadoop/yarn/lib/*,
-      /home/wangqg/hadoop/share/hadoop/tools/lib/*
+      CLASSPATH_PREFIX/hadoop-2.6.5/etc/hadoop,
+      CLASSPATH_PREFIX/hadoop-2.6.5/share/hadoop/common/*,
+      CLASSPATH_PREFIX/hadoop-2.6.5/share/hadoop/common/lib/*,
+      CLASSPATH_PREFIX/hadoop-2.6.5/share/hadoop/hdfs/*,
+      CLASSPATH_PREFIX/hadoop-2.6.5/share/hadoop/hdfs/lib/*,
+      CLASSPATH_PREFIX/hadoop-2.6.5/share/hadoop/mapreduce/*,
+      CLASSPATH_PREFIX/hadoop-2.6.5/share/hadoop/mapreduce/lib/*,
+      CLASSPATH_PREFIX/hadoop-2.6.5/share/hadoop/yarn/*,
+      CLASSPATH_PREFIX/hadoop-2.6.5/share/hadoop/yarn/lib/*,
+      CLASSPATH_PREFIX/hadoop-2.6.5/share/hadoop/tools/lib/*
     </value>
   </property>
 

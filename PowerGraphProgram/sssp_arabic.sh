@@ -1,1 +1,1 @@
-mpiexec -n 16 -hostfile ~/machines ./release/toolkits/graph_analytics/sssp --graph hdfs://$HOSTNAME:9000/experiment/arabic/edge_sssp.txt --format snap
+mpiexec -n 16 -hostfile ~/machines ./release/toolkits/graph_analytics/sssp --graph ${SOCIALITE_PREFIX}/ae_dataset/experiment/arabic/edge_sssp.txt --format snap

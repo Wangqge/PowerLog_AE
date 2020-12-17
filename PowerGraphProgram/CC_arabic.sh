@@ -1,1 +1,1 @@
-mpiexec -n 16 -hostfile ~/machines ./release/toolkits/graph_analytics/connected_component --graph hdfs://$HOSTNAME:9000/experiment/arabic/edge.txt --format snap
+mpiexec -n 16 -hostfile ~/machines ./release/toolkits/graph_analytics/connected_component --graph ${SOCIALITE_PREFIX}/ae_dataset/experiment/arabic/edge.txt --format snap
